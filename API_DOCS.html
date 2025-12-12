@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxAI Tools - API Documentation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0a0e27;
+            color: #f5f5f5;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d4af37;
+        }
+        h1 {
+            color: #d4af37;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #d4af37;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d4af37;
+            padding-left: 15px;
+        }
+        .endpoint {
+            background: rgba(26, 31, 58, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .post { background: #4CAF50; color: white; }
+        .get { background: #2196F3; color: white; }
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+            border-left: 4px solid #d4af37;
+        }
+        code {
+            color: #d4af37;
+            font-family: 'Courier New', monospace;
+        }
+        .description {
+            color: #b0b0b0;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        th {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            font-weight: bold;
+        }
+        .status-success { color: #4CAF50; }
+        .status-error { color: #f44336; }
+        .note {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 LuxAI Tools API Documentation</h1>
+            <p>Premium AI Productivity Suite - REST API Reference</p>
+        </header>
+
+        <h2>🌐 Base URL</h2>
+        <pre><code>http://localhost:8000/api</code></pre>
+
+        <h2>📡 Endpoints</h2>
+
+        <div class="endpoint">
+            <div>
+                <span class="method post">POST</span>
+                <code>/summarize/</code>
+            </div>
+            <p class="description">Summarize text using AI-powered text compression.</p>
+            <h4>Request Body:</h4>
+            <pre><code>{
+  "text": "Your lengthy text here...",
+  "language": "english"
+}</code></pre>
+            <h4>Response:</h4>
+            <pre><code>{
+  "summary": "Condensed summary of your text..."
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <div>
+                <span class="method post">POST</span>
+                <code>/translate/</code>
+            </div>
+            <p class="description">Translate text to 50+ languages.</p>
+            <h4>Request Body:</h4>
+            <pre><code>{
+  "text": "Text to translate",
+  "target_language": "es"
+}</code></pre>
+            <h4>Supported Languages:</h4>
+            <table>
+                <tr>
+                    <th>Code</th><th>Language</th>
+                    <th>Code</th><th>Language</th>
+                </tr>
+                <tr>
+                    <td>es</td><td>Spanish</td>
+                    <td>ja</td><td>Japanese</td>
+                </tr>
+                <tr>
+                    <td>fr</td><td>French</td>
+                    <td>zh</td><td>Chinese</td>
+                </tr>
+                <tr>
+                    <td>de</td><td>German</td>
+                    <td>ko</td><td>Korean</td>
+                </tr>
+                <tr>
+                    <td>it</td><td>Italian</td>
+                    <td>pt</td><td>Portuguese</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="endpoint">
+            <div>
+                <span class="method post">POST</span>
+                <code>/meeting-notes/</code>
+            </div>
+            <p class="description">Generate polished meeting notes from transcripts.</p>
+            <h4>Request (multipart/form-data):</h4>
+            <pre><code>file: <transcript file>
+OR
+transcript: "Meeting transcript text"</code></pre>
+            <h4>Response:</h4>
+            <pre><code>{
+  "notes": "Formatted meeting notes...",
+  "timeline": [
+    {
+      "timestamp": "5 min",
+      "title": "Key Point",
+      "description": "..."
+    }
+  ]
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <div>
+                <span class="method get">GET</span>
+                <code>/stats/</code>
+            </div>
+            <p class="description">Retrieve productivity statistics and metrics.</p>
+            <h4>Response:</h4>
+            <pre><code>{
+  "total_summarizations": 1250,
+  "total_translations": 890,
+  "total_meetings": 450,
+  "time_saved_hours": 240,
+  "languages_supported": 50,
+  "user_satisfaction": 98
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <div>
+                <span class="method get">GET</span>
+                <code>/health/</code>
+            </div>
+            <p class="description">Check API health status.</p>
+            <h4>Response:</h4>
+            <pre><code>{
+  "status": "healthy",
+  "service": "LuxAI API"
+}</code></pre>
+        </div>
+
+        <h2>⚠️ Error Handling</h2>
+        <table>
+            <tr>
+                <th>Status Code</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>200</td>
+                <td><span class="status-success">✓ Success</span></td>
+            </tr>
+            <tr>
+                <td>400</td>
+                <td><span class="status-error">✗ Bad Request</span></td>
+            </tr>
+            <tr>
+                <td>500</td>
+                <td><span class="status-error">✗ Server Error</span></td>
+            </tr>
+        </table>
+
+        <h2>🔐 Authentication</h2>
+        <div class="note">
+            <strong>Note:</strong> Currently, the API does not require authentication. 
+            For production deployment, implement proper API key or JWT authentication.
+        </div>
+
+        <h2>⚡ Performance</h2>
+        <div class="note">
+            <strong>Caching:</strong> Responses are cached for 24 hours using Redis.
+            Identical requests will return cached results instantly.
+        </div>
+
+        <h2>📝 Example Usage</h2>
+        <h3>JavaScript/Fetch:</h3>
+        <pre><code>const response = await fetch('http://localhost:8000/api/summarize/', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    text: 'Your text...',
+    language: 'english'
+  })
+});
+const data = await response.json();
+console.log(data.summary);</code></pre>
+
+        <h3>Python/Requests:</h3>
+        <pre><code>import requests
+
+response = requests.post('http://localhost:8000/api/summarize/', json={
+    'text': 'Your text...',
+    'language': 'english'
+})
+print(response.json()['summary'])</code></pre>
+
+        <h2>🚀 Getting Started</h2>
+        <ol>
+            <li>Start Django backend: <code>python manage.py runserver</code></li>
+            <li>Ensure Redis is running: <code>redis-server</code></li>
+            <li>Start frontend: <code>npm run dev</code></li>
+            <li>Access API at: <code>http://localhost:8000/api</code></li>
+        </ol>
+
+        <footer style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.2); color: #888;">
+            <p>LuxAI Tools © 2025 - Premium AI Productivity Suite</p>
+        </footer>
+    </div>
+</body>
+</html>
